@@ -61,6 +61,8 @@ export const launchWorkflow = async (id) => {
       launchWorkflow(input: {id: "${id}"}) {
         workflow_id
         channelId
+        name
+        announce
         questions {
           text
         }

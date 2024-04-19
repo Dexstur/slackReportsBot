@@ -3,6 +3,7 @@ import * as bolt from "@slack/bolt";
 import * as graph from "../../api/index.js";
 import { saveBroadcast } from "../functions/index.js";
 import { locateChannel } from "../functions/index.js";
+import { slackBotToken } from "../../env.js";
 
 const broadcast = new bolt.default.WorkflowStep("televise", {
   edit: async ({ ack, step, configure }) => {

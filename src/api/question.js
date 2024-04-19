@@ -47,7 +47,7 @@ export const listQuestionById = async (id) => {
 };
 
 export const queueQuestion = async ({ workflowId, questionId }) => {
-  mutation = `
+  const mutation = `
       mutation {
         queueQuestion(input: {workflowId: "${workflowId}", questionId: "${questionId}"}) {
           id

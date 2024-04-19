@@ -66,6 +66,7 @@ const questioning = new bolt.default.WorkflowStep("ask_question", {
     }
   },
   execute: async ({ step, complete, fail }) => {
+    console.log("adding question to queue");
     const workflowId = step.workflow_id;
 
     const questionId = step.step_id;
