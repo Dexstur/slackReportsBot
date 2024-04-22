@@ -29,11 +29,18 @@ app.message(async ({ message, say }) => {
       return;
     }
 
-    const question = reply.messages[1].text;
+    const question = reply.messages[1]?.text;
 
     const answer = reply.messages[0].text;
 
     const filedReport = await graph.reportWithNextQuestion(user);
+
+    if (!filedReport) {
+      say(
+        `Hi, I'm a bot. I'm here to help you with your report.\n Reports have not been setup yet.`
+      );
+      return;
+    }
 
     if (!filedReport.nextQuestion && !filedReport.report.responses.length) {
       say("Edit in progress. Please check in later");

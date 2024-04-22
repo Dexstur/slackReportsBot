@@ -39,7 +39,7 @@ export async function registerTeams() {
 
   const register = teams.map(async (team) => {
     const args = {
-      team_id: team.team_id,
+      team_id: team.id,
       name: team.name,
     };
     return graph.createTeam(args);

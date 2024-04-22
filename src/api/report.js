@@ -64,7 +64,8 @@ export const reportWithNextQuestion = async (userId) => {
 
   const response = await api.post("/", { query: mutation });
 
-  return response.data.data.reportWithNextQuestion;
+  const result = response.data.data;
+  return result ? response.data.data.reportWithNextQuestion : null;
 };
 
 export const trashReport = async (userId) => {
