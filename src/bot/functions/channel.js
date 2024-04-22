@@ -1,5 +1,5 @@
 import { app } from "../../config/index.js";
-import { findTeam } from "./team.js";
+import { getTeamId } from "./team.js";
 
 export async function channelList() {
   const result = await app.client.conversations.list();
@@ -17,7 +17,7 @@ export async function findChannel(name) {
 export async function findTeamChannel(channelName, teamName) {
   const channels = await channelList();
 
-  const team = findTeam(teamName);
+  const team = await getTeamId(teamName);
 
   if (!team) {
     return null;
@@ -25,7 +25,8 @@ export async function findTeamChannel(channelName, teamName) {
 
   const channel = channels.find(
     (channel) =>
-      channel.name === channelName && channel.context_team_id === team.id
+      channel.name.toLowerCase() === channelName.toLowerCase() &&
+      channel.context_team_id === team
   );
 
   return channel ? channel.id : null;

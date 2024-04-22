@@ -1,18 +1,23 @@
 import { api } from "../config/index.js";
 
-export const makeQuestion = async ({ workflowId, text, step_id }) => {
+export const createQuestion = async ({ workflowId, text, step_id }) => {
   const mutation = `
       mutation {
-        makeQuestion (input: {workflowId: "${workflowId}", text: "${text}", step_id: "${step_id}"}) {
+        createQuestion (input: {workflowId: "${workflowId}", text: "${text}", step_id: "${step_id}"}) {
           id
           text
         }
       }
     `;
 
-  const response = await api.post("/", { query: mutation });
+  try {
+    const response = await api.post("/", { query: mutation });
 
-  return response.data.data.makeQuestion;
+    return response.data.data.createQuestion;
+  } catch (err) {
+    console.log(err.response.data.errors);
+    return null;
+  }
 };
 
 export const listQuestionsByWorkflow = async (workflowId) => {
@@ -25,9 +30,14 @@ export const listQuestionsByWorkflow = async (workflowId) => {
       }
     `;
 
-  const response = await api.post("/", { query });
+  try {
+    const response = await api.post("/", { query });
 
-  return response.data.data.listQuestionsByWorkflow;
+    return response.data.data.listQuestionsByWorkflow;
+  } catch (err) {
+    console.log(err.response.data.errors);
+    return null;
+  }
 };
 
 export const listQuestionById = async (id) => {
@@ -41,9 +51,14 @@ export const listQuestionById = async (id) => {
       }
     `;
 
-  const response = await api.post("/", { query });
+  try {
+    const response = await api.post("/", { query });
 
-  return response.data.data.listQuestionById;
+    return response.data.data.listQuestionById;
+  } catch (err) {
+    console.log(err.response.data.errors);
+    return null;
+  }
 };
 
 export const queueQuestion = async ({ workflowId, questionId }) => {

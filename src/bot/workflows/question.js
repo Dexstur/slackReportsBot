@@ -48,6 +48,7 @@ const questioning = new bolt.default.WorkflowStep("ask_question", {
     const workId = step.workflow_id;
 
     const stepId = step.step_id;
+    console.log("step id", stepId);
 
     const args = {
       workId,

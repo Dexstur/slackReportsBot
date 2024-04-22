@@ -14,7 +14,7 @@ export async function saveQuestionStep(
     return null;
   }
 
-  const saved = await graph.makeQuestion(args);
+  const saved = await graph.createQuestion(args);
 
   if (!saved) {
     return setTimeout(async () => {

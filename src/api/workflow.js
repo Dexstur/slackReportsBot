@@ -36,9 +36,16 @@ export const createWorkflow = async ({
       }
     `;
 
-  const response = await api.post("/", { query: mutation });
+  try {
+    const response = await api.post("/", { query: mutation });
 
-  return response.data.data.createWorkflow;
+    console.log(response.data.data);
+
+    return response.data.data.createWorkflow;
+  } catch (err) {
+    console.log(err.response.data.errors);
+    return null;
+  }
 };
 
 export const addBroadcast = async ({ workflowId, channelId }) => {

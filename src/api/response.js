@@ -28,7 +28,7 @@ export const createResponse = async ({
       `;
 
   const response = await api.post("/", { query: mutation });
-
+  console.log(response.data.data.createResponse);
   return response.data.data.createResponse;
 };
 
