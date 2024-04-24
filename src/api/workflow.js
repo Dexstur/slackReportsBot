@@ -58,6 +58,7 @@ export const addBroadcast = async ({ workflowId, channelId }) => {
     `;
 
   const response = await api.post("/", { query: mutation });
+  console.log(response.data);
 
   return response.data.data.addBroadcast;
 };

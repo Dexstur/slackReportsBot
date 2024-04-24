@@ -48,6 +48,7 @@ const broadcast = new bolt.default.WorkflowStep("televise", {
     };
 
     const workId = step.workflow_id;
+    console.log(workId);
 
     const workflow = await graph.viewWorkflow(workId);
 
@@ -56,7 +57,7 @@ const broadcast = new bolt.default.WorkflowStep("televise", {
 
     if (questions.length && channelId) {
       await update({ inputs });
-      await saveBroadcast({ workId, channelId });
+      await saveBroadcast({ workflowId: workId, channelId });
     }
   },
   execute: async ({ step, complete, fail, client }) => {
