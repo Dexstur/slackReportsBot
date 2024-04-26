@@ -8,9 +8,11 @@ app.event("team_join", async ({ event, client, logger }) => {
     const { user } = event;
     console.log("user joined");
 
-    const userData = extractUserDetails(user);
+    if (user.is_email_confirmed) {
+      const userData = extractUserDetails(user);
 
-    await graph.register(userData);
+      await graph.register(userData);
+    }
   } catch (err) {
     logger.error(err);
   }
